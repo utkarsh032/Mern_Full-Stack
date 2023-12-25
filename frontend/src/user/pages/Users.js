@@ -2,12 +2,12 @@ import React from 'react'
 import UsersList from '../components/userslist/UsersList'
 
 
-const Users = () => {
+const Users = props => {
   const USERS = [
     {
       id: 'u1',
       name: 'Utkarsh Raj',
-      image: "https://www.tanjug.rs/data/images/2023-07-07/48158_shutterstock-644724364_f.jpg",
+      image: "https://www.wilsoncenter.org/sites/default/files/media/images/person/james-person-1.jpg",
       places: 3
     }
   ]
