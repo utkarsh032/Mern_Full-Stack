@@ -1,5 +1,6 @@
 import React from 'react'
 import PlaceList from '../components/PlaceList/PlaceList'
+import { useParams } from 'react-router-dom'
 
 const DUMMY_PLACES = [
   {
@@ -16,7 +17,7 @@ const DUMMY_PLACES = [
   },
   {
     id: 'p2',
-    title: "Empire State Building",
+    title: "Empire State Building 2",
     description: "One of the most famous sky scrapers in the world!",
     imageUrl: "https://media.timeout.com/images/101705309/image.jpg",
     address: "20 W 34th St, New York, NY 10001",
@@ -29,9 +30,9 @@ const DUMMY_PLACES = [
 ]
 
 const UserPlaces = () => {
-  return (
-    <PlaceList items={DUMMY_PLACES} />
-  )
+  const userId = useParams().userId;
+  const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId)
+  return (<PlaceList items={loadedPlaces} />)
 }
 
 export default UserPlaces
