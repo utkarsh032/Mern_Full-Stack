@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Users from './user/pages/Users'
 import NewPlaces from './places/pages/NewPlaces'
 import MainNavigation from './shared/components/Navigation/MainNavigation/MainNavigation';
+import UserPlaces from './places/pages/UserPlaces';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' exact element={<Users />} />
+          <Route path='/:userId/places' exact element={<UserPlaces />} />
           <Route path='/places/new' exact element={<NewPlaces />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
