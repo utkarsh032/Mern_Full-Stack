@@ -1,8 +1,8 @@
 import React, { useCallback, useReducer } from 'react'
-import './NewPlaces.css'
-import Input from '../../../shared/components/FormElements/Input/Input'
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/utils/validators'
-import Button from '../../../shared/components/FormElements/Button/Button'
+import './PlaceForm.css'
+import Input from '../../shared/components/FormElements/Input/Input'
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utils/validators'
+import Button from '../../shared/components/FormElements/Button/Button'
 
 const formReducer = (state, action) => {
   switch (action.type) {
@@ -35,6 +35,10 @@ const NewPlaces = () => {
         isValid: false
       },
       description: {
+        value: '',
+        isValid: false
+      },
+      address: {
         value: '',
         isValid: false
       },
