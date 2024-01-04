@@ -5,6 +5,7 @@ import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utils/valid
 import Button from '../../shared/components/FormElements/Button/Button';
 import './PlaceForm.css'
 import { useForm } from '../../shared/hooks/form-hook';
+import Card from '../../shared/components/UIElements/Card/Card';
 
 
 const DUMMY_PLACES = [
@@ -56,26 +57,28 @@ const UpdatePlace = () => {
   );
 
   useEffect(() => {
-    setFormData({
-      title: {
-        value: identifiedPlace.title,
-        isValid: true
-      },
-      description: {
-        value: identifiedPlace.description,
-        isValid: true
-      }
-    }, true)
+    if (identifiedPlace) {
+      setFormData({
+        title: {
+          value: identifiedPlace.title,
+          isValid: true
+        },
+        description: {
+          value: identifiedPlace.description,
+          isValid: true
+        }
+      }, true)
+    }
+
     setIsLoading(false)
   }, [setFormData, identifiedPlace])
-
   const placeUpdateSubmitHandler = event => {
     event.preventDefault();
     console.log(formState.inputs)
   }
 
   if (!identifiedPlace) {
-    return <div className='center'><h2>Could NOt Find Place!</h2></div>
+    return <div className='center'> <Card><h2>Could NOt Find Place!</h2></Card></div>
   }
   if (isLoading) {
     return <div className='center'><h2>Loading...</h2></div>
