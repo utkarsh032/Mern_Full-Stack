@@ -7,22 +7,37 @@ import MainNavigation from './shared/components/Navigation/MainNavigation/MainNa
 import UserPlaces from './places/pages/UserPlaces';
 import UpdatePlace from '../src/places/pages/UpdatePlace'
 import Auth from './user/pages/Auth/Auth';
+import { AuthContext } from './shared/context/auth-context';
+import { useCallback, useState } from 'react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true)
+  }, [])
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false)
+  }, [])
+
+
   return (
-    <Router>
-      <MainNavigation />
-      <main>
-        <Routes>
-          <Route path='/' exact element={<Users />} />
-          <Route path='/:userId/places' exact element={<UserPlaces />} />
-          <Route path='/places/new' exact element={<NewPlaces />} />
-          <Route path='/places/:placeId' exact element={<UpdatePlace />} />
-          <Route path='/auth' exact element={<Auth />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-    </Router>
+    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
+      <Router>
+        <MainNavigation />
+        <main>
+          <Routes>
+            <Route path='/' exact element={<Users />} />
+            <Route path='/:userId/places' exact element={<UserPlaces />} />
+            <Route path='/places/new' exact element={<NewPlaces />} />
+            <Route path='/places/:placeId' exact element={<UpdatePlace />} />
+            <Route path='/auth' exact element={<Auth />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
