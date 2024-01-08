@@ -2,6 +2,7 @@
 
 # dependencies
 /frontend/node_modules
+/NodeExpress_overview/node_modules
 /.pnp
 .pnp.js
 
